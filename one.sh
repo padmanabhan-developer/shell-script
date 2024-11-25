@@ -27,23 +27,19 @@ select machine in "${machines[@]}"; do
 done
 
 echo "You selected: $machine"
-echo "\n"
-echo \n\n
+printf "\n"
 
 # Prompt the user to select a mode based on the selected machine
 echo "Select a mode for $machine:"
-select opt in "${modes[@]}"; do
-    case $opt in
+select mode in "${modes[@]}"; do
+    case $mode in
         "nodejs")
-            mode="${machine}_nodejs"
             break
             ;;
         "python")
-            mode="${machine}_python"
             break
             ;;
         "all")
-            mode="${machine}_all"
             break
             ;;
         *)
@@ -54,7 +50,7 @@ done
 
 # Display the selected mode
 echo "Selected mode: $mode" 
-echo \n\n
+printf "\n"
 
 
 # Prompt the user to include/exclude 2FA
@@ -77,7 +73,7 @@ done
 
 # Display the selected mode
 echo "Selected mode: $opt" 
-echo \n\n
+printf "\n"
 
 # Prompt the user to include/exclude RemoteIT Agent
 echo "Choose to include/ignore RemoteIT Agent:"
@@ -99,13 +95,13 @@ done
 
 # Display the selected mode
 echo "Selected mode: $opt" 
-echo \n\n
+printf "\n"
 
 case $remoteit_flag in
     1)
         read -p "Enter RemoteIT Agent code:" remoteit_code
 esac
-echo \n\n
+printf "\n"
 
 # install core packages
 # export LC_ALL=$LANG.UTF-8
