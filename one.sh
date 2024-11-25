@@ -3,6 +3,7 @@
 # Define the machines
 machines=("DEV" "SERVER")
 modes=("nodejs" "python" "all")
+
 multifactor_auth=("include" "ignore")
 multifactor_flag=0
 remoteit_mode=("include" "ignore")
@@ -111,6 +112,9 @@ echo \n\n
 export MODE=$machine
 export INCLUDE_2FA=$multifactor_flag
 export INCLUDE_REMOTEIT_AGENT=$remoteit_flag
+
+echo "machine : $machine"
+echo "mode : $mode"
 
 ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/common.yml -e "remoteit_agent_code=$remoteit_code" --ask-become-pass 
 
