@@ -79,7 +79,7 @@ echo "Selected mode: $opt"
 echo \n\n
 
 # Prompt the user to include/exclude RemoteIT Agent
-echo "Choose to include/ignore multifactor authentication:"
+echo "Choose to include/ignore RemoteIT Agent:"
 select opt in "${remoteit_mode[@]}"; do
     case $opt in
         "include")
@@ -123,5 +123,6 @@ case $mode in
         LC_ALL=$LANG.UTF-8 MODE=$machine ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/nodejs.yml --ask-become-pass
         break
         ;;
+esac
 
-
+echo "Setup complete!"
