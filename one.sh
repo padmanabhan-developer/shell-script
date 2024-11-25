@@ -27,7 +27,7 @@ done
 
 echo "You selected: $machine"
 echo "\n"
-echo "\n\n"
+echo \n\n
 
 # Prompt the user to select a mode based on the selected machine
 echo "Select a mode for $machine:"
@@ -53,7 +53,7 @@ done
 
 # Display the selected mode
 echo "Selected mode: $mode" 
-echo "\n\n"
+echo \n\n
 
 
 # Prompt the user to include/exclude 2FA
@@ -76,7 +76,7 @@ done
 
 # Display the selected mode
 echo "Selected mode: $opt" 
-echo "\n\n"
+echo \n\n
 
 # Prompt the user to include/exclude RemoteIT Agent
 echo "Choose to include/ignore multifactor authentication:"
@@ -98,18 +98,13 @@ done
 
 # Display the selected mode
 echo "Selected mode: $opt" 
-echo "\n\n"
+echo \n\n
 
 case $remoteit_flag in
     1)
-        read -p "Enter RemoteIT Agent code: " remoteit_code
-        break
-        ;;
-    0)
-        break
-        ;;
+        read -p "Enter RemoteIT Agent code:" remoteit_code
 esac
-echo "\n\n"
+echo \n\n
 
 # install core packages
 LC_ALL=$LANG.UTF-8 MODE=$machine INCLUDE_2FA=$multifactor_flag INCLUDE_REMOTEIT_AGENT=$remoteit_flag ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/common.yml -e "remoteit_agent_code=$remoteit_code" --ask-become-pass 
