@@ -107,20 +107,25 @@ esac
 echo \n\n
 
 # install core packages
-LC_ALL=$LANG.UTF-8 MODE=$machine INCLUDE_2FA=$multifactor_flag INCLUDE_REMOTEIT_AGENT=$remoteit_flag ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/common.yml -e "remoteit_agent_code=$remoteit_code" --ask-become-pass 
+export LC_ALL=$LANG.UTF-8
+export MODE=$machine
+export INCLUDE_2FA=$multifactor_flag
+export INCLUDE_REMOTEIT_AGENT=$remoteit_flag
+
+ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/common.yml -e "remoteit_agent_code=$remoteit_code" --ask-become-pass 
 
 case $mode in
     "nodejs")
-        LC_ALL=$LANG.UTF-8 MODE=$machine ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/nodejs.yml --ask-become-pass
+        ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/nodejs.yml --ask-become-pass
         break
         ;;
     "python")
-        LC_ALL=$LANG.UTF-8 MODE=$machine ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/python.yml --ask-become-pass
+        ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/python.yml --ask-become-pass
         break
         ;;
     "all")
-        LC_ALL=$LANG.UTF-8 MODE=$machine ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/python.yml --ask-become-pass
-        LC_ALL=$LANG.UTF-8 MODE=$machine ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/nodejs.yml --ask-become-pass
+        ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/python.yml --ask-become-pass
+        ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/nodejs.yml --ask-become-pass
         break
         ;;
 esac
