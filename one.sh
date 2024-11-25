@@ -107,7 +107,7 @@ esac
 echo \n\n
 
 # install core packages
-export LC_ALL=$LANG.UTF-8
+# export LC_ALL=$LANG.UTF-8
 export MODE=$machine
 export INCLUDE_2FA=$multifactor_flag
 export INCLUDE_REMOTEIT_AGENT=$remoteit_flag
@@ -126,6 +126,10 @@ case $mode in
     "all")
         ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/python.yml --ask-become-pass
         ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 $ANSIBLE_BASE_DIR/src/nodejs.yml --ask-become-pass
+        break
+        ;;
+    *)
+        echo "mode is not set"
         break
         ;;
 esac
