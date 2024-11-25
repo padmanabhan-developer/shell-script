@@ -26,7 +26,8 @@ select machine in "${machines[@]}"; do
     esac
 done
 
-echo "You selected: $machine"
+echo "SELECTED MACHINE TYPE: $machine"
+printf "\n"
 printf "\n"
 
 # Prompt the user to select a mode based on the selected machine
@@ -49,7 +50,8 @@ select mode in "${modes[@]}"; do
 done
 
 # Display the selected mode
-echo "Selected mode: $mode" 
+echo "SELECTED MODE: $mode" 
+printf "\n"
 printf "\n"
 
 
@@ -74,6 +76,7 @@ done
 # Display the selected mode
 echo "Selected mode: $opt" 
 printf "\n"
+printf "\n"
 
 # Prompt the user to include/exclude RemoteIT Agent
 echo "Choose to include/ignore RemoteIT Agent:"
@@ -96,11 +99,13 @@ done
 # Display the selected mode
 echo "Selected mode: $opt" 
 printf "\n"
+printf "\n"
 
 case $remoteit_flag in
     1)
         read -p "Enter RemoteIT Agent code:" remoteit_code
 esac
+printf "\n"
 printf "\n"
 
 # install core packages
